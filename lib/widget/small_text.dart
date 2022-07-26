@@ -1,4 +1,5 @@
 
+import 'package:alldays/utils/dimensions.dart';
 import 'package:flutter/cupertino.dart';
 
 class SmallText extends StatelessWidget {
@@ -21,7 +22,7 @@ class SmallText extends StatelessWidget {
       style: TextStyle(
         fontWeight: FontWeight.w400,
         color: color,
-        fontSize: size,
+        fontSize: Dimensions.font16,
         height: height,
 
       ),

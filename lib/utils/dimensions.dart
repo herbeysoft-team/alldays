@@ -24,7 +24,9 @@ class Dimensions{
   static double iconSize24 = screenHeight/28.5;
   static double iconSize16 = screenHeight/42.7;
 
+  static double font16 = screenHeight/42.7;
   static double font20 = screenHeight/34.2;
+  static double font26 = screenHeight/26.3;
   static double radius20 = screenHeight/34.2;
   static double radius30 = screenHeight/22.7;
 
@@ -35,7 +37,8 @@ class Dimensions{
   //popularFood
   static double popularFoodSize = screenHeight/1.95;
 
-
+  //bottom height
+  static double bottomHeightBar = screenHeight/5.69;
 
 
 

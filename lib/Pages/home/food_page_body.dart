@@ -1,4 +1,5 @@
 import 'package:alldays/utils/app_color.dart';
+import 'package:alldays/widget/app_colomn.dart';
 import 'package:alldays/widget/big_text.dart';
 import 'package:alldays/widget/icon_and_text_widget.dart';
 import 'package:alldays/widget/small_text.dart';
@@ -229,59 +230,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               ),
               child: Container(
                   padding: EdgeInsets.only(top: Dimensions.height10, left: Dimensions.width15, right: Dimensions.width15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BigText(text: " Bourbon Street Chicken "),
-                      SizedBox(height: Dimensions.height10),
-                      Row(
-                        children: [
-                          Wrap(
-                              children: List.generate(
-                                  5,
-                                  (index) => Icon(
-                                        Icons.star,
-                                        color: AppColors.mainColor,
-                                      ))),
-                          SizedBox(
-                            width: Dimensions.width10,
-                          ),
-                          SmallText(text: "4.5"),
-                          SizedBox(
-                            width: Dimensions.width10,
-                          ),
-                          SmallText(text: "1287"),
-                          SizedBox(
-                            width: Dimensions.width10,
-                          ),
-                          SmallText(text: "comments"),
-                        ],
-                      ),
-                      SizedBox(
-                        height: Dimensions.height15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconAndTextWidget(
-                            icon: Icons.circle_sharp,
-                            text: "Normal",
-                            iconColor: AppColors.mainTextColor,
-                          ),
-                          IconAndTextWidget(
-                            icon: Icons.location_on,
-                            text: "1.7km",
-                            iconColor: AppColors.mainColor,
-                          ),
-                          IconAndTextWidget(
-                            icon: Icons.access_time_rounded,
-                            text: "32mins",
-                            iconColor: AppColors.mainBlackColor,
-                          ),
-                        ],
-                      )
-                    ],
-                  )),
+                  child: AppColomn(text: "Chinese Side",)),
             ),
           ),
         ],

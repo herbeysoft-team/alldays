@@ -1,8 +1,10 @@
 import 'package:alldays/utils/dimensions.dart';
 import 'package:alldays/widget/app_icon.dart';
+import 'package:alldays/widget/expandable_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/app_color.dart';
+import '../../widget/app_colomn.dart';
 import '../../widget/big_text.dart';
 import '../../widget/icon_and_text_widget.dart';
 import '../../widget/small_text.dart';
@@ -13,8 +15,10 @@ class PopularFoodDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
+          //background image
           Positioned(
               left: 0,
               right: 0,
@@ -31,6 +35,7 @@ class PopularFoodDetails extends StatelessWidget {
                 ),
 
               )),
+          //two icons
           Positioned(
             top: Dimensions.height45,
             left: Dimensions.width20,
@@ -43,6 +48,7 @@ class PopularFoodDetails extends StatelessWidget {
 
                 ],
               )),
+          //introduction of food
           Positioned(
             left: 0,
               right: 0,
@@ -60,58 +66,56 @@ class PopularFoodDetails extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BigText(text: " Bourbon Street Chicken "),
-                    SizedBox(height: Dimensions.height10),
-                    Row(
-                      children: [
-                        Wrap(
-                            children: List.generate(
-                                5,
-                                    (index) => Icon(
-                                  Icons.star,
-                                  color: AppColors.mainColor,
-                                ))),
-                        SizedBox(
-                          width: Dimensions.width10,
-                        ),
-                        SmallText(text: "4.5"),
-                        SizedBox(
-                          width: Dimensions.width10,
-                        ),
-                        SmallText(text: "1287"),
-                        SizedBox(
-                          width: Dimensions.width10,
-                        ),
-                        SmallText(text: "comments"),
-                      ],
-                    ),
-                    SizedBox(
-                      height: Dimensions.height15,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconAndTextWidget(
-                          icon: Icons.circle_sharp,
-                          text: "Normal",
-                          iconColor: AppColors.mainTextColor,
-                        ),
-                        IconAndTextWidget(
-                          icon: Icons.location_on,
-                          text: "1.7km",
-                          iconColor: AppColors.mainColor,
-                        ),
-                        IconAndTextWidget(
-                          icon: Icons.access_time_rounded,
-                          text: "32mins",
-                          iconColor: AppColors.mainBlackColor,
-                        ),
-                      ],
-                    )
+                    AppColomn(text:"Chinese Side",),
+                    SizedBox(height: Dimensions.height20,),
+                    BigText(text: "Introduce"),
+                    SizedBox(height: Dimensions.height10,),
+                    Expanded(child: SingleChildScrollView(child: ExpandableText(text: "Chicken Marinated which is super delicious if youn ever have to take a bite of this. Ypu will forever want to eat more everyday everytime. Nevertheless, it is really delicious and captivating. wao!!"))),
                   ],
-                )),
+                ),
               )
-        ],
+          )],
+          
+
+      ),
+      bottomNavigationBar: Container(
+        height: Dimensions.bottomHeightBar - 20,
+        padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20, right: Dimensions.width20, left: Dimensions.width20),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.radius20*2), topRight: Radius.circular(Dimensions.radius20*2)),
+          color: Colors.white70,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: EdgeInsets.only(top: Dimensions.height20, left: Dimensions.width20,bottom: Dimensions.height20, right: Dimensions.width20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius20),
+                color: Colors.white,
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.remove, color: AppColors.mainTextColor,),
+                  SizedBox(width: Dimensions.width10/2,),
+                  BigText(text: "0"),
+                  SizedBox(width: Dimensions.width10/2,),
+                  Icon(Icons.add, color: AppColors.mainTextColor,),
+
+                ],
+              ),
+            ),
+            Container(
+
+              padding: EdgeInsets.only(top: Dimensions.height20, left: Dimensions.width20,bottom: Dimensions.height20, right: Dimensions.width20),
+              child: BigText(text: "\#10 | Add to cart",color: Colors.white,),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius20),
+                color: AppColors.mainColor,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
