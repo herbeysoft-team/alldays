@@ -50,7 +50,7 @@ class AppColomn extends StatelessWidget {
             IconAndTextWidget(
               icon: Icons.circle_sharp,
               text: "Normal",
-              iconColor: AppColors.mainTextColor,
+              iconColor: AppColors.iconColor1,
             ),
             IconAndTextWidget(
               icon: Icons.location_on,

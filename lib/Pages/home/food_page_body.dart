@@ -1,3 +1,4 @@
+import 'package:alldays/controller/popular_product_controller.dart';
 import 'package:alldays/utils/app_color.dart';
 import 'package:alldays/widget/app_colomn.dart';
 import 'package:alldays/widget/big_text.dart';
@@ -5,7 +6,7 @@ import 'package:alldays/widget/icon_and_text_widget.dart';
 import 'package:alldays/widget/small_text.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import '../../utils/dimensions.dart';
 
 
@@ -43,28 +44,34 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         //slider container
-        Container(
-          height: Dimensions.pageView,
-          child: PageView.builder(
-            controller: pageController,
-            itemCount: 5,
-            itemBuilder: (context, position) {
-              return _buildPageItem(position);
-            },
-          ),
-        ),
+        GetBuilder<PopularProductController>(builder:(popularProducts){
+          return Container(
+            height: Dimensions.pageView,
+            child: PageView.builder(
+              controller: pageController,
+              itemCount: popularProducts.popularProductList.length,
+              itemBuilder: (context, position) {
+                return _buildPageItem(position);
+              },
+            ),
+          );
+        }),
+
     //indicator
-    new DotsIndicator(
-              dotsCount: 5,
-              position: _currPageValue,
-              decorator: DotsDecorator(
-    activeColor: AppColors.mainColor,
-              size: const Size.square(9.0),
-              activeSize: const Size(18.0, 9.0),
-              activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-              ),
-              ),
-        SizedBox(height: Dimensions.height30,),
+        GetBuilder<PopularProductController>(builder: (popularProducts){
+          return DotsIndicator(
+            dotsCount: popularProducts.popularProductList.isEmpty?1:popularProducts.popularProductList.length,
+            position: _currPageValue,
+            decorator: DotsDecorator(
+            activeColor: AppColors.mainColor,
+            size: const Size.square(9.0),
+            activeSize: const Size(18.0, 9.0),
+            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+            ),
+            );
+        }),
+
+        SizedBox(height: Dimensions.height20,),
         Container(
           margin: EdgeInsets.only(left: Dimensions.width30),
           child: Row(
@@ -119,7 +126,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                          color: Colors.white,
                        ),
                         child: Padding(
-                          padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                          padding: EdgeInsets.only(left: Dimensions.width10/2, right: Dimensions.width10/2),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -134,7 +141,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                   IconAndTextWidget(
                                     icon: Icons.circle_sharp,
                                     text: "Normal",
-                                    iconColor: AppColors.mainTextColor,
+                                    iconColor: AppColors.iconColor1,
                                   ),
                                   IconAndTextWidget(
                                     icon: Icons.location_on,
@@ -229,7 +236,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 ]
               ),
               child: Container(
-                  padding: EdgeInsets.only(top: Dimensions.height10, left: Dimensions.width15, right: Dimensions.width15),
+                  padding: EdgeInsets.only(top: Dimensions.height10),
                   child: AppColomn(text: "Chinese Side",)),
             ),
           ),
